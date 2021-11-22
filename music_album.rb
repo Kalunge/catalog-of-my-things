@@ -8,9 +8,10 @@ class MusicAlbum < Item
     @on_spotify = on_spotify
   end
 
-  private
-
   def can_be_archived?
     super && on_spotify
   end
+
+  private :can_be_archived?
 end
+
