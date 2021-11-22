@@ -1,5 +1,5 @@
 class Label
-  def def initialize(title:, color:)
+  def initialize(title:, color:)
     @id = Random.rand(1000)
     @title = title
     @color = color
