@@ -9,11 +9,6 @@ class Source
 
   def add_item(item)
     @items << item
-    item.add_source(self)
+    item.add_source = self
   end
 end
-
-test = Source.new(0, 'Horror')
-# itemmm = Item.new(publish_date: '2020-10-10', archived: true)
-# test.add_item(itemmm)
-p test
