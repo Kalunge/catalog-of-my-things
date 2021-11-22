@@ -5,8 +5,4 @@ class Label
     @color = color
     @items = []
   end
-
-  def add_item(item)
-    @items << item
-  end
 end
