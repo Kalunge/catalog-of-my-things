@@ -1,9 +1,10 @@
+require 'date'
 class Item
   attr_reader :genre, :author, :source, :label
   attr_accessor :id, :archived
 
-  def initialize(publish_date, archived: false)
-    @publish_date = publish_date
+  def initialize(publish_date:, archived: false)
+    @publish_date = Date.parse(publish_date)
     @id = Random.rand(1..1000)
     @archived = archived
   end
@@ -29,7 +30,8 @@ class Item
   end
 
   def can_be_archived?
-    (Time.now.year - @publish_date.year) > 10
+    today = Date.today
+    (today.year - @publish_date.year) > 10
   end
 
   def move_to_archive?
