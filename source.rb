@@ -9,6 +9,6 @@ class Source
 
   def add_item(item)
     @items << item
-    item.source = self
+    item.add_source(self)
   end
 end
