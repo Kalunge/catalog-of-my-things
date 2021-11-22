@@ -3,7 +3,7 @@ class App
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
-      '3' => 'List all movie',
+      '3' => 'List all movies',
       '4' => 'List of games',
       '5' => 'List all genres',
       '6' => 'List all labels',
@@ -20,9 +20,10 @@ class App
   def run
     puts 'Welcome to the Catalog Of My Things! '
     puts ''
+    puts 'Please choose an option by entering a number.'
 
     loop do
-      @options.each { |key, value| puts "#{key}) #{value}" }
+      @options.each { |key, value| puts "\t #{key}) #{value}" }
 
       option = gets.chomp
       break if option == '13'
