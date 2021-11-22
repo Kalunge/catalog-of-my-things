@@ -7,4 +7,9 @@ class Genre
     @name = name
     @items = []
   end
+
+  def add_item(item)
+    @items.push(item)
+    item.add_genre(self)
+  end
 end
