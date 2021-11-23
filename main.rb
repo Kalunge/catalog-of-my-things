@@ -1,4 +1,5 @@
 require_relative './handler/movie_handler'
+require_relative 'handlers/book_label_handler'
 # rubocop:disable Metrics
 
 class App
@@ -40,7 +41,7 @@ class App
   def handle_option(option)
     case option
     when '1'
-      puts 'List all books'
+      list_all_books
     when '2'
       puts 'List all music albums'
     when '3'
@@ -50,13 +51,13 @@ class App
     when '5'
       puts 'List all genres'
     when '6'
-      puts 'List all labels'
+      list_all_labels
     when '7'
       puts 'List all authors'
     when '8'
       @movie_handler.all_soucrce
     when '9'
-      puts 'Add a book'
+      add_book
     when '10'
       puts 'Add a music album'
     when '11'
