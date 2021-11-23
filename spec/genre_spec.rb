@@ -4,7 +4,7 @@ require_relative '../item'
 describe 'Create a Genre' do
   before :each do
     @genre = Genre.new('Hiphop')
-    @item = Item.new(publish_date: '2020-02-02', archived: false)
+    @item = Item.new(name: 'name', publish_date: '2020-02-02', archived: false)
   end
 
   describe 'genre is an instance of Genre' do

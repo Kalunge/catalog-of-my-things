@@ -2,7 +2,7 @@ require_relative '../music_album'
 
 describe 'Create a MusicAlbum' do
   before :each do
-    @music_album = MusicAlbum.new(publish_date: '2000-01-02', archived: false, on_spotify: true)
+    @music_album = MusicAlbum.new(name: 'name', publish_date: '2000-01-02', archived: false, on_spotify: true)
   end
 
   describe 'music_album is an instance of MusicAlbum' do

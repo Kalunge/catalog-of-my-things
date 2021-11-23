@@ -1,7 +1,9 @@
 require_relative 'item'
 class Book < Item
-  def initialize(publisher:, cover_state:, publish_date:)
-    super(publish_date: publish_date)
+  attr_accessor :name, :publish_date, :cover_state, :publisher
+
+  def initialize(publisher:, cover_state:, publish_date:, name: 'unknown', archived: false)
+    super(publish_date: publish_date, archived: archived, name: name)
     @publisher = publisher
     @cover_state = cover_state
   end

@@ -1,8 +1,8 @@
 require './item'
 
 class Movie < Item
-  def initialize(publish_date:, silet:, archived: false)
-    super(publish_date: publish_date, archived: archived)
+  def initialize(publish_date:, silet:, archived: false, name: 'unknown')
+    super(publish_date: publish_date, archived: archived, name: name)
     @silet = silet
   end
 
