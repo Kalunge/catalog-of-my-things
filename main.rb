@@ -1,5 +1,9 @@
+require_relative 'handlers/book_label_handler'
 class App
+  include(BookLabelHandlers)
   def initialize
+    @books = []
+    @labels = []
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -21,13 +25,21 @@ class App
     puts 'Welcome to the Catalog Of My Things! '
     puts ''
     puts 'Please choose an option by entering a number.'
-
+    print 'enter option: '
     loop do
       @options.each { |key, value| puts "\t #{key}) #{value}" }
 
       option = gets.chomp
-      break if option == '13'
+      save_books and break if option == '13'
+
+      handle_option option
     end
+  end
+
+  def handle_option(option)
+    list_all_books if option == '1'
+    add_book if option == '9'
+    list_all_labels if option == '6'
   end
 end
 

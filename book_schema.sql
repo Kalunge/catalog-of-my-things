@@ -1,0 +1,18 @@
+CREATE TABLE books(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  publisher VARCHAR(255),
+  cover_state VARCHAR(255),
+  genre VARCHAR(255),
+  author VARCHAR(255),
+  source VARCHAR(255),
+  label VARCHAR(255),
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE labels(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR(255),
+  color VARCHAR(255),
+  PRIMARY KEY(id)
+);
+
