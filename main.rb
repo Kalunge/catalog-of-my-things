@@ -1,8 +1,9 @@
-require_relative  './handler/movie_handler'
+require_relative './handler/movie_handler'
+# rubocop:disable Metrics
 
 class App
   def initialize
-    @movie_handler = Movie_Handler.new
+    @movie_handler = MovieHandler.new
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -30,6 +31,7 @@ class App
 
       option = gets.chomp
       break if option == '13'
+
       handle_option option
     end
   end
@@ -37,7 +39,7 @@ class App
   def handle_option(option)
     case option
     when '1'
-     puts 'List all books'
+      puts 'List all books'
     when '2'
       puts 'List all music albums'
     when '3'
@@ -66,10 +68,9 @@ class App
   end
 end
 
-
 def main
   app = App.new
   app.run
 end
-
+# rubocop:enable Metrics
 main
