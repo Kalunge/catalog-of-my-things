@@ -1,11 +1,9 @@
-
 require_relative './handler/movie_handler'
 # rubocop:disable Metrics
 
 class App
   include(BookLabelHandlers)
   def initialize
-
     @movie_handler = MovieHandler.new
     @options = {
       '1' => 'List all books',
@@ -68,12 +66,6 @@ class App
     else
       puts 'That is not a valid option'
     end
-  end
-
-  def handle_option(option)
-    list_all_books if option == '1'
-    add_book if option == '9'
-    list_all_labels if option == '6'
   end
 end
 
