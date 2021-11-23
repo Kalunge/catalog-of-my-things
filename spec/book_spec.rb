@@ -12,7 +12,7 @@ describe 'Book' do
     end
 
     it 'returns true when coverstate' do
-      expect(@book.can_be_archived?).to be(true)
+      expect(@book.archived).to eql false
     end
 
     it 'returns true if parent method returns true OR if cover_state equals to "bad"' do
