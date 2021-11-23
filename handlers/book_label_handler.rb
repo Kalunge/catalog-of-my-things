@@ -1,11 +1,11 @@
 module BookLabelHandlers
   def list_all_books
-    @books.each_with_index do |book, index|
-      if @books.any?
+    if @books.empty?
+      puts 'You have not added any books yet'.upcase
+    else
+      @books.each_with_index do |book, index|
         puts "#{index}) name: #{book.name}, publisher:
         #{book.publisher}, published_year:#{book.publish_date} coverstate: #{book.cover_state}"
-      else
-        puts 'You have not added any books yet'.upcase
       end
     end
   end
@@ -52,9 +52,10 @@ module BookLabelHandlers
   end
 
   def list_all_labels
-    @labels.each_with_index do |label, index|
-      puts "#{index}) Title: #{label.title}, Color: #{label.color}" if @labels.any?
+    if @labels.empty?
       puts 'You have not added any labels yet'.upcase
+    else
+      @labels.each_with_index { |label, index| puts "#{index}) Title: #{label.title}, Color: #{label.color}" }
     end
   end
 
