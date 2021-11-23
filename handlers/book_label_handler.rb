@@ -6,7 +6,9 @@ module BookLabelHandlers
     if @books.empty?
       puts 'You have not added any books yet'.upcase
     else
-      @books.each_with_index {|book, index| puts "#{index}) name: #{book.name}, publisher: #{book.publisher}, publish_date:#{book.publish_date}"}
+      @books.each_with_index do |book, index|
+        puts "#{index}) name: #{book.name}, publisher: #{book.publisher}, publish_date:#{book.publish_date}"
+      end
       puts
     end
   end
