@@ -30,4 +30,39 @@ module BookLabelHandlers
     @books << book
     message
   end
+
+  def load_books_from_file
+    if File.exist?('books.json')
+      JSON.parse(File.read('books.json')).map do |book|
+        name = book['name']
+        publisher = book['publisher']
+        publish_date = book['published_date']
+        cover_state = book['cover_state']
+        new_book = Book.new(name:name, publisher: publisher, publish_date: publish_date, cover_state: cover_state)
+        @books << new_book
+      end
+    else
+      []
+    end
+
+    def load_labels_from_file
+    if File.exist?('labels.json')
+      JSON.parse(File.read('labels.json')).map do |label|
+        title = label['title']
+        color = label['color']
+        new_label = Label.new(title:title, color: color)
+        @labels << new_label
+      end
+    else
+      []
+    end
+  end
+
+  def save_books
+    File.open('books.json', 'w') { |file| file.write JSON.generate(@books) } unless @books.empty?
+  end
+
+  def save_labels
+    File.open('labels.json', 'w') { |file| file.write JSON.generate(@labels) } unless @labels.empty?
+  end
 end
