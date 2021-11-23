@@ -11,4 +11,12 @@ class Source
     @items << item
     item.add_source = self
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'name' => @name,
+      'items' => @items
+    }.to_json(*args)
+  end
 end

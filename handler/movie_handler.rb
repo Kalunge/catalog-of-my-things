@@ -57,4 +57,8 @@ class MovieHandler
   def save_movies
     File.open('movies.json', 'w') {|file| file.write JSON.generate(@movies)} unless @movies.empty?
   end
+
+  def save_sources
+    File.open('sources.json', 'w') {|file| file.write JSON.generate(@sources)} unless @sources.empty?
+  end
 end
