@@ -9,6 +9,9 @@ CREATE TABLE books(
   label_id      INT,
   archived      BOOLEAN,
   PRIMARY KEY(id)
+  FOREIGN KEY(genre_id) REFERENCES genre(id),
+  FOREIGN KEY(author_id) REFERENCES author(id),
+  FOREIGN KEY(label_id) REFERENCES label(id)
 );
 
 CREATE TABLE labels(
