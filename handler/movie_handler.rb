@@ -1,5 +1,5 @@
-require_relative '../movie'
-require_relative '../source'
+require './movie.rb'
+require './source.rb'
 
 class Movie_Handler
     attr_accessor :movie
@@ -9,58 +9,44 @@ class Movie_Handler
     end
 
     def add_movie
+        puts
         print 'Movie name: '
         name = gets.chomp
-        print 'Movie Source: '
+        print 'Source: '
         source_name= gets.chomp
         print 'Published Date: '
         publish_date = gets.chomp
         print 'Silet? [Y/N]: '
         silet = gets.chomp != 'n'
-        print 'Archived: '
+        print 'Archived? [Y/N]: '
         archived = gets.chomp != 'n'
 
         @sources.push(Source.new(source_name))
         @movies.push(Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name))
+        puts
         puts('Successfully added movie!')
-        choice_selection
+        puts
     end
 
     def all_movie
-        puts 'All movies are: '
-        @movies.each { |movie| puts "Title: '#{movie.name}', Published_Date: #{movie.publish_date}, Silet: #{movie.silet}, ID: #{movie.id}" }
-        choice_selection
+        if @movies.empty? 
+            puts 'Sorry! Right now we have no movies'
+        else
+            puts 'All movies are: '
+            puts
+            @movies.each { |movie| puts "Title: '#{movie.name}', Published_Date: #{movie.publish_date}, Silet: #{movie.silet}, ID: #{movie.id}" }
+            puts
+        end
     end
 
     def all_soucrce
+        if @sources.any?
+        puts
         puts 'All sources are: '
-        @sources.each { |source| puts "Name: '#{source.name}', ID: #{source.id}" }
-        choice_selection
-    end
-
-    def choice_selection
-        puts 'Please Choose an option by entrin a number:'
-        choose_options = ['1- Add movie',  '2- List of movies', '3- List all sources', '4-Exit']
-        choose_options.map { |choose| puts choose }
-        options = gets.chomp.to_i
-        case options
-        when 1
-            add_movie
-        when 2
-            all_movie
-        when 3
-            all_soucrce
+        @sources.each { |source| puts "ID: #{source.id}, Name: '#{source.name}'" }
+        puts
         else
-            puts 'Thanks for using this app!'
+            puts 'Sorry! We have no sources detail'
         end
     end
 end
-
-def main
-    puts 'Welcome Movie App!'
-    puts
-    test = Movie_Handler.new
-    test.choice_selection
-end
-
-puts(main)
