@@ -1,11 +1,13 @@
 CREATE TABLE books(
   id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255),
   publisher VARCHAR(255),
   cover_state VARCHAR(255),
-  genre VARCHAR(255),
-  author VARCHAR(255),
-  source VARCHAR(255),
-  label VARCHAR(255),
+  publish_date  DATE,
+  genre_id      INT,
+  author_id     INT,
+  label_id      INT,
+  archived      BOOLEAN,
   PRIMARY KEY(id)
 );
 
