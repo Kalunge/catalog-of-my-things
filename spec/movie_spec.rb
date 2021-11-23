@@ -2,7 +2,7 @@ require_relative '../movie'
 
 describe Movie do
   before(:each) do
-    @movie = Movie.new(publish_date: '2020-10-10', silet: false, archived: true)
+    @movie = Movie.new(publish_date: '2020-10-10', silet: false, archived: false, name: 'Test')
   end
 
   it 'shows instance of Movie class' do
@@ -13,12 +13,11 @@ describe Movie do
     expect(@movie).to be_kind_of Item
   end
 
-  it 'verifies can_be_archived? method return false' do
-    expect(@movie.can_be_archived?).to be false
+  it 'verifies archived return false' do
+    expect(@movie.archived).to be false
   end
 
-  it 'verifies can_be_archived? method return true' do
-    movie = Movie.new(publish_date: '2020-10-10', silet: true, archived: true)
-    expect(movie.can_be_archived?).to be true
+  it 'verifies silet return true' do
+    expect(@movie.silet).to be false
   end
 end
