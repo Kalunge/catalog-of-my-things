@@ -10,5 +10,13 @@ module BookLabelHandlers
     start
   end
 
-  
+  def list_all_labels
+    @labels.each_with_index do |label, index|
+      puts "#{index}) Title: #{label.title}, Color: #{label.color}" if @labels.any?
+      puts 'You have not added any labels yet'.upcase
+      start
+    end
+  end
+
+
 end
