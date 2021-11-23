@@ -8,6 +8,16 @@ class Book < Item
     @cover_state = cover_state
   end
 
+  def to_json(*args)
+    {
+      'JSON.create_id' => self.class.name,
+      'name' => @name,
+      'publisher' => @publisher,
+      'published_date' => publish_date,
+      'cover_state' => @cover_state
+    }.to_json(*args)
+  end
+
   private
 
   def can_be_archived?
