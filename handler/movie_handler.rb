@@ -1,3 +1,4 @@
+require 'json'
 require './movie'
 require './source'
 
@@ -51,5 +52,9 @@ class MovieHandler
     else
       puts 'Sorry! We have no sources detail'
     end
+  end
+
+  def save_movies
+    File.open('movies.json', 'w') {|file| file.write JSON.generate(@movies)} unless @movies.empty?
   end
 end
