@@ -18,5 +18,17 @@ module BookLabelHandlers
     end
   end
 
-
+  def add_book
+    print 'name: '
+    name = gets.chomp
+    print 'publisher: '
+    publisher = gets.chomp
+    print 'date of publish: '
+    publish_date = gets.chomp
+    print 'cover state: '
+    cover_state = gets.chomp
+    book = Book.new(name: name, cover_state: cover_state, publisher: publisher, publish_date: publish_date)
+    @books << book
+    message
+  end
 end
