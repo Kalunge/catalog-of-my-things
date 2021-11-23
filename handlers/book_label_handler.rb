@@ -10,13 +10,6 @@ module BookLabelHandlers
     end
   end
 
-  def list_all_labels
-    @labels.each_with_index do |label, index|
-      puts "#{index}) Title: #{label.title}, Color: #{label.color}" if @labels.any?
-      puts 'You have not added any labels yet'.upcase
-    end
-  end
-
   def add_book
     print 'name: '
     name = gets.chomp
@@ -28,7 +21,6 @@ module BookLabelHandlers
     cover_state = gets.chomp
     book = Book.new(name: name, cover_state: cover_state, publisher: publisher, publish_date: publish_date)
     @books << book
-    message
   end
 
   def load_books_from_file
@@ -38,20 +30,8 @@ module BookLabelHandlers
         publisher = book['publisher']
         publish_date = book['published_date']
         cover_state = book['cover_state']
-        new_book = Book.new(name:name, publisher: publisher, publish_date: publish_date, cover_state: cover_state)
+        new_book = Book.new(name: name, publisher: publisher, publish_date: publish_date, cover_state: cover_state)
         @books << new_book
-      end
-    else
-      []
-    end
-
-    def load_labels_from_file
-    if File.exist?('labels.json')
-      JSON.parse(File.read('labels.json')).map do |label|
-        title = label['title']
-        color = label['color']
-        new_label = Label.new(title:title, color: color)
-        @labels << new_label
       end
     else
       []
@@ -60,6 +40,35 @@ module BookLabelHandlers
 
   def save_books
     File.open('books.json', 'w') { |file| file.write JSON.generate(@books) } unless @books.empty?
+  end
+
+  def add_label
+    print 'title: '
+    title = gets.chomp
+    print 'color: '
+    color = gets.chomp
+    label = Label.new(title: title, color: color)
+    @labels << label
+  end
+
+  def list_all_labels
+    @labels.each_with_index do |label, index|
+      puts "#{index}) Title: #{label.title}, Color: #{label.color}" if @labels.any?
+      puts 'You have not added any labels yet'.upcase
+    end
+  end
+
+  def load_labels_from_file
+    if File.exist?('labels.json')
+      JSON.parse(File.read('labels.json')).map do |label|
+        title = label['title']
+        color = label['color']
+        new_label = Label.new(title: title, color: color)
+        @labels << new_label
+      end
+    else
+      []
+    end
   end
 
   def save_labels
