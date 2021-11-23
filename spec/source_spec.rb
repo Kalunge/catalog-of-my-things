@@ -3,7 +3,7 @@ require_relative '../item'
 
 describe Source do
   before(:each) do
-    @source = Source.new(0, 'Horror')
+    @source = Source.new('Horror')
   end
 
   it 'shows instance of Source class' do
