@@ -28,7 +28,7 @@ class MovieHandler
     source.add_item(movie)
     @sources.push(source)
     @movies.push(movie)
-    
+
     puts
     puts('Successfully added movie!')
     puts
@@ -59,11 +59,11 @@ class MovieHandler
   end
 
   def save_movies
-    File.open('movies.json', 'w') {|file| file.write JSON.generate(@movies)} unless @movies.empty?
+    File.open('movies.json', 'w') { |file| file.write JSON.generate(@movies) } unless @movies.empty?
   end
 
   def save_sources
-    File.open('sources.json', 'w') {|file| file.write JSON.generate(@sources)} unless @sources.empty?
+    File.open('sources.json', 'w') { |file| file.write JSON.generate(@sources) } unless @sources.empty?
   end
 
   def load_movies_from_files
@@ -71,7 +71,8 @@ class MovieHandler
 
     if File.exist? file
       JSON.parse(File.read(file)).map do |movie|
-        new_movie = Movie.new(publish_date: movie['publish_date'], silet: movie['silet'], archived: movie['archived'], name: movie['name'])
+        new_movie = Movie.new(publish_date: movie['publish_date'], silet: movie['silet'], archived: movie['archived'],
+                              name: movie['name'])
         new_movie.id = movie['id']
         @movies.push(new_movie)
       end

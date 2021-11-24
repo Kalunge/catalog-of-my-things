@@ -62,8 +62,6 @@ class App
       puts 'Add a music album'
     when '11'
       @movie_handler.add_movie
-      @movie_handler.save_movies
-      @movie_handler.save_sources
     when '12'
       puts 'Add a game'
     else
