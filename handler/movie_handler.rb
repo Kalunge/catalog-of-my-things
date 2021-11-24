@@ -23,8 +23,12 @@ class MovieHandler
     print 'Archived? [Y/N]: '
     archived = gets.chomp != 'n'
 
-    @sources.push(Source.new(source_name))
-    @movies.push(Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name))
+    source = Source.new(source_name)
+    movie = Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name)
+    source.add_item(movie)
+    @sources.push(source)
+    @movies.push(movie)
+    
     puts
     puts('Successfully added movie!')
     puts
