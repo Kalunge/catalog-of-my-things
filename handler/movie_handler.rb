@@ -58,7 +58,6 @@ class MovieHandler
     puts
   end
 
-
   def all_movie
     if @movies.empty?
       puts 'Sorry! Right now we have no movies'
@@ -76,7 +75,7 @@ class MovieHandler
     if @sources.any?
       puts
       puts 'All sources are: '
-      @sources.each_with_index { |source,index| puts "#{index})  ID: #{source.id}, Name: '#{source.name}'" }
+      @sources.each_with_index { |source, index| puts "#{index})  ID: #{source.id}, Name: '#{source.name}'" }
       puts
     else
       puts 'Sorry! We have no sources detail'
