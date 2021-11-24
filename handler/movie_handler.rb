@@ -10,12 +10,36 @@ class MovieHandler
     @sources = []
   end
 
+  def create_source
+    print 'Source: '
+    source_name = gets.chomp
+    Source.new(source_name)
+  end
+
+  def handle_sources
+    if @sources.any?
+      print "enter 'N' to create a new label or 'S' to select an existing one:  "
+      option = gets.chomp.upcase
+      case option
+      when 'N'
+        create_source
+      when 'S'
+        puts 'select a label from the list by index'
+        all_soucrce
+        option = gets.chomp
+        @sources[option.to_i]
+      else
+        print 'invalid entry'
+      end
+    else
+      create_source
+    end
+  end
+
   def add_movie
     puts
     print 'Movie name: '
     name = gets.chomp
-    print 'Source: '
-    source_name = gets.chomp
     print 'Published Date: '
     publish_date = gets.chomp
     print 'Silet? [Y/N]: '
@@ -23,16 +47,17 @@ class MovieHandler
     print 'Archived? [Y/N]: '
     archived = gets.chomp != 'n'
 
-    source = Source.new(source_name)
+    source = handle_sources
     movie = Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name)
     source.add_item(movie)
-    @sources.push(source)
+    @sources.push(source) unless @sources.include?(source)
     @movies.push(movie)
 
     puts
     puts('Successfully added movie!')
     puts
   end
+
 
   def all_movie
     if @movies.empty?
@@ -51,7 +76,7 @@ class MovieHandler
     if @sources.any?
       puts
       puts 'All sources are: '
-      @sources.each { |source| puts "ID: #{source.id}, Name: '#{source.name}'" }
+      @sources.each_with_index { |source,index| puts "#{index})  ID: #{source.id}, Name: '#{source.name}'" }
       puts
     else
       puts 'Sorry! We have no sources detail'
