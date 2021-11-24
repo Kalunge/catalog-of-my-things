@@ -61,4 +61,32 @@ class MovieHandler
   def save_sources
     File.open('sources.json', 'w') {|file| file.write JSON.generate(@sources)} unless @sources.empty?
   end
+
+  def load_movies_from_files
+    file = 'movies.json'
+
+    if File.exist? file
+      JSON.parse(File.read(file)).map do |movie|
+        new_movie = Movie.new(publish_date: movie['publish_date'], silet: movie['silet'], archived: movie['archived'], name: movie['name'])
+        new_movie.id = movie['id']
+        @movies.push(new_movie)
+      end
+    else
+      []
+    end
+  end
+
+  def load_sources_from_files
+    file = 'sources.json'
+
+    if File.exist? file
+      JSON.parse(File.read(file)).map do |source|
+        new_source = Source.new(source['name'])
+        new_source.id = source['id']
+        @sources.push(new_source)
+      end
+    else
+      []
+    end
+  end
 end

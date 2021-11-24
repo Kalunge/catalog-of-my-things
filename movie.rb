@@ -15,6 +15,7 @@ class Movie < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
+      'id' => @id,
       'name' => @name,
       'publish_date' => @publish_date,
       'silet' => @silet,

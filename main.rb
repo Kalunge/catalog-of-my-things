@@ -22,6 +22,8 @@ class App
   end
 
   def run
+    @movie_handler.load_movies_from_files
+    @movie_handler.load_sources_from_files
     puts 'Welcome to the Catalog Of My Things! '
     puts ''
     puts 'Please choose an option by entering a number.'
