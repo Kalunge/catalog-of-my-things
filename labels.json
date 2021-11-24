@@ -1,0 +1,25 @@
+[{
+  "JSON.create_id": "Label",
+  "id": 770,
+  "title": "testing",
+  "color": "reddd",
+  "items": [{
+    "JSON.create_id": "Book",
+    "name": "test1",
+    "publisher": "publitest",
+    "published_date": "2003-04-05",
+    "cover_state": "bad"
+  }, {
+    "JSON.create_id": "Book",
+    "name": "test2",
+    "publisher": "newpub",
+    "published_date": "2004-06-07",
+    "cover_state": "bad"
+  }, {
+    "JSON.create_id": "Book",
+    "name": "test22",
+    "publisher": "testi11",
+    "published_date": "2005-06-07",
+    "cover_state": "bad"
+  }]
+}]

@@ -8,6 +8,8 @@ class App
     @movie_handler = MovieHandler.new
     @books = []
     @labels = []
+    load_books_from_file
+    load_labels_from_file
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -26,8 +28,6 @@ class App
   end
 
   def run
-    load_books_from_file
-    load_labels_from_file
     @movie_handler.load_movies_from_files
     @movie_handler.load_sources_from_files
     puts 'Welcome to the Catalog Of My Things! '
