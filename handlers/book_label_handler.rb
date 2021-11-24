@@ -50,17 +50,10 @@ module BookLabelHandlers
     publish_date = gets.chomp
     print 'cover state: '
     cover_state = gets.chomp
-    # option = gets.chomp
-    # print 'label title: '
-    # title = gets.chomp
-    # print 'label color: '
-    # color = gets.chomp
-
-    # label = Label.new(title: title, color: color)
     label = handle_label
     book = Book.new(name: name, cover_state: cover_state, publisher: publisher, publish_date: publish_date)
     label.add_item(book)
-    @labels << label
+    @labels << label unless @labels.include?(label)
     @books << book
     puts 'Book added successfully'
   end
