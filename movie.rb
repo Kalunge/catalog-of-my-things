@@ -12,5 +12,16 @@ class Movie < Item
     super() || @silet
   end
 
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'id' => @id,
+      'name' => @name,
+      'publish_date' => @publish_date,
+      'silet' => @silet,
+      'archived' => @archived
+    }.to_json(*args)
+  end
+
   private :can_be_archived?
 end

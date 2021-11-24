@@ -1,3 +1,4 @@
+require 'json'
 require './movie'
 require './source'
 
@@ -22,8 +23,12 @@ class MovieHandler
     print 'Archived? [Y/N]: '
     archived = gets.chomp != 'n'
 
-    @sources.push(Source.new(source_name))
-    @movies.push(Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name))
+    source = Source.new(source_name)
+    movie = Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name)
+    source.add_item(movie)
+    @sources.push(source)
+    @movies.push(movie)
+
     puts
     puts('Successfully added movie!')
     puts
@@ -50,6 +55,43 @@ class MovieHandler
       puts
     else
       puts 'Sorry! We have no sources detail'
+    end
+  end
+
+  def save_movies
+    File.open('movies.json', 'w') { |file| file.write JSON.generate(@movies) } unless @movies.empty?
+  end
+
+  def save_sources
+    File.open('sources.json', 'w') { |file| file.write JSON.generate(@sources) } unless @sources.empty?
+  end
+
+  def load_movies_from_files
+    file = 'movies.json'
+
+    if File.exist? file
+      JSON.parse(File.read(file)).map do |movie|
+        new_movie = Movie.new(publish_date: movie['publish_date'], silet: movie['silet'], archived: movie['archived'],
+                              name: movie['name'])
+        new_movie.id = movie['id']
+        @movies.push(new_movie)
+      end
+    else
+      []
+    end
+  end
+
+  def load_sources_from_files
+    file = 'sources.json'
+
+    if File.exist? file
+      JSON.parse(File.read(file)).map do |source|
+        new_source = Source.new(source['name'])
+        new_source.id = source['id']
+        @sources.push(new_source)
+      end
+    else
+      []
     end
   end
 end
