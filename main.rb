@@ -32,6 +32,7 @@ class App
     puts ''
     puts 'Please choose an option by entering a number.'
     print 'enter option: '
+    puts
     loop do
       @options.each { |key, value| puts "\t #{key}) #{value}" }
 
