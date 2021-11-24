@@ -26,10 +26,4 @@ class Author
       'items' => @items
     }.to_json(*args)
   end
-
-  def self.json_create(obj)
-    author = new(obj['first_name'], obj['last_name'])
-    author.id = obj['id']
-    author
-  end
 end

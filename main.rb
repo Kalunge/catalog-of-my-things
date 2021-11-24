@@ -1,6 +1,7 @@
 require_relative './handlers/movie_handler'
 require_relative 'handlers/book_label_handler'
 require_relative 'handlers/music_genre'
+require_relative 'handlers/game_handler'
 # rubocop:disable Metrics
 
 class App
@@ -8,6 +9,7 @@ class App
   include MusicGenreHandlers
   def initialize
     @movie_handler = MovieHandler.new
+    @game_handler = GamesHandler.new
     @books = []
     @labels = []
     @music_album = []
@@ -38,6 +40,8 @@ class App
     load_genres_from_file
     @movie_handler.load_movies_from_files
     @movie_handler.load_sources_from_files
+    @game_handler.load_games_from_files
+    @game_handler.load_authors_from_files
     puts 'Welcome to the Catalog Of My Things! '
     puts ''
     puts 'Please choose an option by entering a number.'
@@ -66,13 +70,13 @@ class App
     when '3'
       @movie_handler.all_movie
     when '4'
-      puts 'List of games'
+      @game_handler.all_games
     when '5'
       list_all_genre
     when '6'
       list_all_labels
     when '7'
-      puts 'List all authors'
+      @game_handler.all_authors
     when '8'
       @movie_handler.all_soucrce
     when '9'
@@ -82,7 +86,9 @@ class App
     when '11'
       @movie_handler.add_movie
     when '12'
-      puts 'Add a game'
+      @game_handler.add_game
+      @game_handler.save_author
+      @game_handler.save_games
     else
       puts 'That is not a valid option'
     end

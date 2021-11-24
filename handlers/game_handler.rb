@@ -27,7 +27,7 @@ class GamesHandler
     print 'Last played on [YYYY-MM-DD]: '
     last_played_at = gets.chomp
 
-    author = Author.new(first_name, last_name)
+    author = Author.new(first_name: first_name, last_name: last_name)
     game = Game.new(publish_date: publish_date, name: name, multiplayer: multiplayer, last_played_at: last_played_at)
     author.add_item(game)
     @authors.push(author)
@@ -68,7 +68,7 @@ class GamesHandler
   def save_games
     File.open('games.json', 'w') { |file| file.write JSON.generate(@games) } unless @games.empty?
   end
- 
+
   def save_author
     File.open('authors.json', 'w') { |file| file.write JSON.generate(@authors) } unless @authors.empty?
   end
