@@ -2,7 +2,7 @@ class Author
   attr_accessor :first_name, :last_name, :id
   attr_reader :items
 
-  def initialize(first_name, last_name)
+  def initialize(first_name:, last_name:)
     @first_name = first_name
     @last_name = last_name
     @items = []
@@ -11,7 +11,7 @@ class Author
 
   def add_item(item)
     @items << item
-    item.add_author = self unless item.add_author == self
+    item.add_author = self
   end
 
   def to_s
@@ -23,7 +23,8 @@ class Author
       JSON.create_id => self.class.name,
       'first_name' => @first_name,
       'last_name' => @last_name,
-      'id' => @id
+      'id' => @id,
+      'items' => @items
     }.to_json(*args)
   end
 

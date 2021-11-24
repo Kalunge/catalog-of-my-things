@@ -3,10 +3,10 @@ require_relative 'item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(multiplayer, last_played_at, *args)
-    super(*args)
+  def initialize(publish_date:, last_played_at:, name: 'unknown', multiplayer: false)
+    super(publish_date: publish_date, name: name)
     @multiplayer = multiplayer
-    @last_played_at = last_played_at
+    @last_played_at = Date.parse(last_played_at)
   end
 
   def can_be_archived?
@@ -22,14 +22,11 @@ class Game < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
+      'id' => @id,
+      'name' => @name,
+      'publish_date' => @publish_date,
       'multiplayer' => @multiplayer,
       'last_played_at' => @last_played_at
-    }.merge(super).to_json(*args)
-  end
-
-  def self.json_create(obj)
-    game = new(obj['multiplayer'], obj['last_played_at'], Time.parse(obj['publish_date']))
-    game.id = obj['id']
-    game
+    }.to_json(*args)
   end
 end
