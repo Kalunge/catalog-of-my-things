@@ -12,6 +12,8 @@ class App
     @labels = []
     @music_album = []
     @genre = []
+    load_books_from_file
+    load_labels_from_file
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -30,10 +32,13 @@ class App
   end
 
   def run
+<<<<<<< HEAD
     load_books_from_file
     load_labels_from_file
     load_musics_from_file
     load_genres_from_file
+=======
+>>>>>>> dev-branch
     @movie_handler.load_movies_from_files
     @movie_handler.load_sources_from_files
     puts 'Welcome to the Catalog Of My Things! '
