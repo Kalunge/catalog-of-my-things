@@ -32,13 +32,10 @@ class App
   end
 
   def run
-<<<<<<< HEAD
     load_books_from_file
     load_labels_from_file
     load_musics_from_file
     load_genres_from_file
-=======
->>>>>>> dev-branch
     @movie_handler.load_movies_from_files
     @movie_handler.load_sources_from_files
     puts 'Welcome to the Catalog Of My Things! '

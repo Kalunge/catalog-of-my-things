@@ -1,6 +1,7 @@
 require 'json'
 require_relative '../music_album'
 require_relative '../genre'
+# rubocop:disable Metrics
 
 module MusicGenreHandlers
   def list_all_music_album
@@ -9,7 +10,7 @@ module MusicGenreHandlers
     else
       puts "List of all Music albums: \n"
       @music_album.each_with_index do |album, index|
-        puts "#{index} - Music album name: #{album.name}, Publish date: #{album.publish_date}, On Spotify: #{album.on_spotify}, Archived: #{album.archived}"
+        puts "#{index} - Album: #{album.name}, Publish date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
       end
     end
   end
@@ -48,13 +49,13 @@ module MusicGenreHandlers
 
     print 'Published date: '
     publish_date = gets.chomp
-    
+
     print 'On spotify? [Y/N]: '
     on_spotify = gets.chomp != 'n'
 
     print 'Archived? [Y/N]: '
     archived = gets.chomp != 'n'
-    
+
     music = MusicAlbum.new(publish_date: publish_date, name: music_name, archived: archived, on_spotify: on_spotify)
     genre = handle_genre
     genre.add_item(music)
@@ -73,7 +74,8 @@ module MusicGenreHandlers
         publish_date = music['publish_date']
         on_spotify = music['on_spotify']
         archived = music['archived']
-        new_music = MusicAlbum.new(publish_date: publish_date, name: music_name, archived: archived, on_spotify: on_spotify)
+        new_music = MusicAlbum.new(publish_date: publish_date, name: music_name, archived: archived,
+                                   on_spotify: on_spotify)
         @music_album << new_music
       end
     else
@@ -94,11 +96,10 @@ module MusicGenreHandlers
   end
 
   def list_all_genre
+    puts
     if @genre.length.zero?
-      puts 
       puts 'Sorry! There is no genre yet!'.upcase
     else
-      puts 
       puts "List of all genre: \n"
       @genre.each_with_index do |genre, index|
         puts "#{index} - Genre: #{genre.name}"
@@ -122,3 +123,4 @@ module MusicGenreHandlers
     File.open('genre.json', 'w') { |file| file.write JSON.generate(@genre) } unless @genre.empty?
   end
 end
+# rubocop:enable Metrics
