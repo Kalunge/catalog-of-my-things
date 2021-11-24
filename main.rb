@@ -1,4 +1,4 @@
-require_relative './handler/movie_handler'
+require_relative './handlers/movie_handler'
 require_relative 'handlers/book_label_handler'
 # rubocop:disable Metrics
 
