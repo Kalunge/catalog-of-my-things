@@ -1,0 +1,13 @@
+[{
+  "JSON.create_id": "Book",
+  "name": "marriage",
+  "publisher": "crossway",
+  "published_date": "2011-04-04",
+  "cover_state": "bad"
+}, {
+  "JSON.create_id": "Book",
+  "name": "second book",
+  "publisher": "longhorn",
+  "published_date": "2005-04-05",
+  "cover_state": "bad"
+}]

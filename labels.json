@@ -1,0 +1,19 @@
+[{
+  "JSON.create_id": "Label",
+  "id": 869,
+  "title": "mamms",
+  "color": "black",
+  "items": []
+}, {
+  "JSON.create_id": "Label",
+  "id": 834,
+  "title": "ndjjs",
+  "color": "red",
+  "items": [{
+    "JSON.create_id": "Book",
+    "name": "second book",
+    "publisher": "longhorn",
+    "published_date": "2005-04-05",
+    "cover_state": "bad"
+  }]
+}]

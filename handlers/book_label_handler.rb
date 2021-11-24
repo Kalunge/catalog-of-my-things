@@ -22,8 +22,18 @@ module BookLabelHandlers
     publish_date = gets.chomp
     print 'cover state: '
     cover_state = gets.chomp
+    option = gets.chomp
+    print 'label title: '
+    title = gets.chomp
+    print 'label color: '
+    color = gets.chomp
+
+    label = Label.new(title: title, color: color)
     book = Book.new(name: name, cover_state: cover_state, publisher: publisher, publish_date: publish_date)
+    label.add_item(book)
+    @labels << label
     @books << book
+    puts "Book added successfully"
   end
 
   def load_books_from_file
@@ -52,6 +62,7 @@ module BookLabelHandlers
     color = gets.chomp
     label = Label.new(title: title, color: color)
     @labels << label
+    puts "label added successfully"
   end
 
   def list_all_labels
