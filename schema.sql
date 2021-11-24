@@ -41,3 +41,16 @@ CREATE TABLE labels(
   PRIMARY KEY(id)
 );
 
+CREATE TABLE music_albums(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  on_spotify BOOLEAN,
+  FOREIGN KEY(id) REFERENCES item(id)
+);
+
+CREATE TABLE genres(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255)
+  PRIMARY KEY(id)
+);
+
+
