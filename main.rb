@@ -1,13 +1,17 @@
-require_relative './handler/movie_handler'
+require_relative './handlers/movie_handler'
 require_relative 'handlers/book_label_handler'
+require_relative 'handlers/music_genre'
 # rubocop:disable Metrics
 
 class App
   include(BookLabelHandlers)
+  include MusicGenreHandlers
   def initialize
     @movie_handler = MovieHandler.new
     @books = []
     @labels = []
+    @music_album = []
+    @genre = []
     load_books_from_file
     load_labels_from_file
     @options = {
@@ -28,6 +32,10 @@ class App
   end
 
   def run
+    load_books_from_file
+    load_labels_from_file
+    load_musics_from_file
+    load_genres_from_file
     @movie_handler.load_movies_from_files
     @movie_handler.load_sources_from_files
     puts 'Welcome to the Catalog Of My Things! '
@@ -45,6 +53,8 @@ class App
     end
     save_books
     save_labels
+    save_music
+    save_genre
   end
 
   def handle_option(option)
@@ -52,13 +62,13 @@ class App
     when '1'
       list_all_books
     when '2'
-      puts 'List all music albums'
+      list_all_music_album
     when '3'
       @movie_handler.all_movie
     when '4'
       puts 'List of games'
     when '5'
-      puts 'List all genres'
+      list_all_genre
     when '6'
       list_all_labels
     when '7'
@@ -68,7 +78,7 @@ class App
     when '9'
       add_book
     when '10'
-      puts 'Add a music album'
+      puts add_music_album
     when '11'
       @movie_handler.add_movie
     when '12'
