@@ -18,7 +18,7 @@ class Label
       'id' => @id,
       'title' => @title,
       'color' => @color,
-      'items' => @items,
+      'items' => @items
     }.to_json(*args)
   end
 end

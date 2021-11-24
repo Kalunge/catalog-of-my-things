@@ -13,6 +13,34 @@ module BookLabelHandlers
     end
   end
 
+  def create_label
+    print 'label title: '
+    title = gets.chomp
+    print 'label color: '
+    color = gets.chomp
+    Label.new(title: title, color: color)
+  end
+
+  def handle_label
+    if @labels.any?
+      print "enter 'N' to create a new label or 'S' to select an existing one"
+      option = gets.chomp.upcase
+      case option
+      when 'N'
+        create_label
+      when 'S'
+        puts 'select a label from the list by index'
+        list_all_labels
+        option = gets.chomp
+        @labels[option.to_i]
+      else
+        print 'invalid entry'
+      end
+    else
+      create_label
+    end
+  end
+
   def add_book
     print 'name: '
     name = gets.chomp
@@ -22,18 +50,19 @@ module BookLabelHandlers
     publish_date = gets.chomp
     print 'cover state: '
     cover_state = gets.chomp
-    option = gets.chomp
-    print 'label title: '
-    title = gets.chomp
-    print 'label color: '
-    color = gets.chomp
+    # option = gets.chomp
+    # print 'label title: '
+    # title = gets.chomp
+    # print 'label color: '
+    # color = gets.chomp
 
-    label = Label.new(title: title, color: color)
+    # label = Label.new(title: title, color: color)
+    label = handle_label
     book = Book.new(name: name, cover_state: cover_state, publisher: publisher, publish_date: publish_date)
     label.add_item(book)
     @labels << label
     @books << book
-    puts "Book added successfully"
+    puts 'Book added successfully'
   end
 
   def load_books_from_file
@@ -62,7 +91,7 @@ module BookLabelHandlers
     color = gets.chomp
     label = Label.new(title: title, color: color)
     @labels << label
-    puts "label added successfully"
+    puts 'label added successfully'
   end
 
   def list_all_labels

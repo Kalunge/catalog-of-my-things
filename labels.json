@@ -1,19 +1,31 @@
 [{
   "JSON.create_id": "Label",
-  "id": 869,
-  "title": "mamms",
-  "color": "black",
+  "id": 901,
+  "title": "newlabek",
+  "color": "blue",
+  "items": [{
+    "JSON.create_id": "Book",
+    "name": "7 habits",
+    "publisher": "msjsjs",
+    "published_date": "2007-04-05",
+    "cover_state": "bad"
+  }]
+}, {
+  "JSON.create_id": "Label",
+  "id": 40,
+  "title": "newlabek",
+  "color": "blue",
   "items": []
 }, {
   "JSON.create_id": "Label",
-  "id": 834,
-  "title": "ndjjs",
-  "color": "red",
+  "id": 901,
+  "title": "newlabek",
+  "color": "blue",
   "items": [{
     "JSON.create_id": "Book",
-    "name": "second book",
-    "publisher": "longhorn",
-    "published_date": "2005-04-05",
+    "name": "7 habits",
+    "publisher": "msjsjs",
+    "published_date": "2007-04-05",
     "cover_state": "bad"
   }]
 }]
