@@ -3,17 +3,17 @@ require_relative '../item'
 
 describe Author do
   before :each do
-    @author = Author.new('author_firstname', 'author_lastname')
+    @author = Author.new(first_name: 'first_name', last_name: 'last_name')
     @author.id = Random.rand(1..1000)
   end
 
   describe '#names' do
     it 'should return author firstname' do
-      expect(@author.first_name).to eq('author_firstname')
+      expect(@author.first_name).to eq('first_name')
     end
 
     it 'should return author lastname' do
-      expect(@author.last_name).to eq('author_lastname')
+      expect(@author.last_name).to eq('last_name')
     end
   end
 

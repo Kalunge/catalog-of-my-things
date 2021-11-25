@@ -3,7 +3,7 @@ require_relative '../game'
 
 describe '#test_game' do
   before :each do
-    @game = Game.new(name: 'Super Mario Bros.', publish_date: '1992-1-1', last_played_at: Time.new(2000, 1, 1))
+    @game = Game.new(publish_date: '1992-1-1', name: 'Super Mario Bros', multiplayer: true, last_played_at: '2000-1-1')
     @game.id = Random.rand(1...1000)
     @game.multiplayer = true
   end
