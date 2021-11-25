@@ -8,8 +8,8 @@ class Source
   end
 
   def add_item(item)
-    @items << item
     item.add_source = self
+    @items << item
   end
 
   def to_json(*args)

@@ -4,7 +4,8 @@ class App
   include(BookLabelHandlers)
   include MusicGenreHandlers
   def initialize
-    class_init
+    @movie_handler = MovieHandler.new
+    @game_handler = GamesHandler.new
     arr_init
     @options = {
       '1' => 'List all books',
@@ -38,6 +39,10 @@ class App
     save_labels
     save_music
     save_genre
+    @game_handler.save_author
+    @game_handler.save_games
+    @movie_handler.save_movies
+    @movie_handler.save_sources
   end
 
   def print_o
@@ -46,11 +51,6 @@ class App
     puts 'Please choose an option by entering a number.'
     print 'enter option: '
     puts
-  end
-
-  def class_init
-    @movie_handler = MovieHandler.new
-    @game_handler = GamesHandler.new
   end
 
   def arr_init
@@ -62,14 +62,10 @@ class App
 
   def game_opts
     @game_handler.add_game
-    @game_handler.save_author
-    @game_handler.save_games
   end
 
   def movie_opts
     @movie_handler.add_movie
-    @movie_handler.save_movies
-    @movie_handler.save_sources
   end
 
   def book_load

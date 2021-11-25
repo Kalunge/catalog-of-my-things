@@ -8,8 +8,8 @@ class Genre
   end
 
   def add_item(item)
-    @items.push(item)
     item.add_genre(self)
+    @items.push(item)
   end
 
   def to_json(*args)

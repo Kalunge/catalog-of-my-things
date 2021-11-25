@@ -42,13 +42,13 @@ class MovieHandler
     name = gets.chomp
     print 'Published Date: '
     publish_date = gets.chomp
-    print 'Silet? [Y/N]: '
-    silet = gets.chomp != 'n'
+    print 'Silent? [Y/N]: '
+    silent = gets.chomp != 'n'
     print 'Archived? [Y/N]: '
     archived = gets.chomp != 'n'
 
     source = handle_sources
-    movie = Movie.new(publish_date: publish_date, silet: silet, archived: archived, name: name)
+    movie = Movie.new(publish_date: publish_date, silent: silent, archived: archived, name: name)
     source.add_item(movie)
     @sources.push(source) unless @sources.include?(source)
     @movies.push(movie)
@@ -65,7 +65,7 @@ class MovieHandler
       puts 'All movies are: '
       puts
       @movies.each do |movie|
-        puts "Title: '#{movie.name}', Published_Date: #{movie.publish_date}, Silet: #{movie.silet}, ID: #{movie.id}"
+        puts "Title: '#{movie.name}', Published_Date: #{movie.publish_date}, Silent: #{movie.silent}, ID: #{movie.id}"
       end
       puts
     end
@@ -95,7 +95,7 @@ class MovieHandler
 
     if File.exist? file
       JSON.parse(File.read(file)).map do |movie|
-        new_movie = Movie.new(publish_date: movie['publish_date'], silet: movie['silet'], archived: movie['archived'],
+        new_movie = Movie.new(publish_date: movie['publish_date'], silent: movie['silent'], archived: movie['archived'],
                               name: movie['name'])
         new_movie.id = movie['id']
         @movies.push(new_movie)

@@ -1,15 +1,15 @@
 require './item'
 
 class Movie < Item
-  attr_accessor :silet
+  attr_accessor :silent
 
-  def initialize(publish_date:, silet:, archived: false, name: 'unknown')
+  def initialize(publish_date:, silent:, archived: false, name: 'unknown')
     super(publish_date: publish_date, archived: archived, name: name)
-    @silet = silet
+    @silent = silent
   end
 
   def can_be_archived?
-    super() || @silet
+    super() || @silent
   end
 
   def to_json(*args)
@@ -18,7 +18,7 @@ class Movie < Item
       'id' => @id,
       'name' => @name,
       'publish_date' => @publish_date,
-      'silet' => @silet,
+      'silent' => @silent,
       'archived' => @archived
     }.to_json(*args)
   end
