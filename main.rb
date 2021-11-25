@@ -15,11 +15,8 @@ class App
       '6' => 'List all labels',
       '7' => 'List all authors',
       '8' => 'List all source',
-      '9' => 'Add a book',
-      '10' => 'Add a music album',
-      '11' => 'Add a movie',
-      '12' => 'Add a game',
-      '13' => 'Exit'
+      '9' => 'Add an Item',
+      '10' => 'Exit'
     }
   end
 
@@ -33,7 +30,7 @@ class App
       @options.each { |key, value| puts "\t #{key}) #{value}" }
 
       option = gets.chomp
-      break if option == '13'
+      break if option == '10'
 
       handle_option option
     end
@@ -69,6 +66,12 @@ class App
     @game_handler.save_games
   end
 
+  def movie_opts
+    @movie_handler.add_movie
+    @movie_handler.save_movies
+    @movie_handler.save_sources
+  end
+
   def book_load
     load_books_from_file
     load_labels_from_file
@@ -89,6 +92,38 @@ class App
     @game_handler.load_authors_from_files
   end
 
+  def add_list
+    @add_menu = {
+      '1' => 'Add a book',
+      '2' => 'Add a music album',
+      '3' => 'Add a movie',
+      '4' => 'Add a game',
+      '5' => 'Go Back'
+    }
+  end
+
+  def add_opts
+    add_list
+    @add_menu.each { |key, value| puts "\t #{key}) #{value}" }
+    print 'enter option: '
+    option = gets.chomp
+    case option
+    when '1'
+      add_book
+    when '2'
+      add_music_album
+    when '3'
+      movie_opts
+    when '4'
+      game_opts
+    when '5'
+      run
+    else
+      puts 'invalid option'
+    end
+  end
+
+  # rubocop:disable Metrics
   def handle_option(option)
     case option
     when '1'
@@ -108,21 +143,10 @@ class App
     when '8'
       @movie_handler.all_soucrce
     when '9'
-      add_book
-    when '10'
-      puts add_music_album
-    when '11'
-      @movie_handler.add_movie
-    when '12'
-      game_opts
+      add_opts
     else
       puts 'That is not a valid option'
     end
   end
+  # rubocop:enable Metrics
 end
-
-def main
-  app = App.new
-  app.run
-end
-main
