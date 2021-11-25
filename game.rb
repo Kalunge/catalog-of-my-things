@@ -25,7 +25,7 @@ class Game < Item
       'name' => @name,
       'id' => @id,
       'multiplayer' => @multiplayer,
-      'published_date' => @published_date,
+      'publish_date' => @publish_date,
       'last_played_at' => @last_played_at
     }.to_json(*args)
   end
