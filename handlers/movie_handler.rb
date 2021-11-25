@@ -112,6 +112,7 @@ class MovieHandler
       JSON.parse(File.read(file)).map do |source|
         new_source = Source.new(source['name'])
         new_source.id = source['id']
+        new_source.items = source['items']
         @sources.push(new_source)
       end
     else

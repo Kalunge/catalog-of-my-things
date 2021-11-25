@@ -95,6 +95,7 @@ class GamesHandler
       JSON.parse(File.read(file)).map do |authors|
         new_author = Author.new(first_name: authors['first_name'], last_name: authors['last_name'])
         new_author.id = authors['id']
+        new_author.items = authors['items']
         @authors << new_author
       end
     else

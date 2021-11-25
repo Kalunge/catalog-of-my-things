@@ -112,6 +112,7 @@ module MusicGenreHandlers
       JSON.parse(File.read('genre.json')).map do |genre|
         name = genre['name']
         new_genre = Genre.new(name)
+        new_genre.items = genre['items']
         @genre << new_genre
       end
     else
