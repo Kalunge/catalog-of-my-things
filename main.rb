@@ -1,21 +1,11 @@
-require_relative './handlers/movie_handler'
-require_relative 'handlers/book_label_handler'
-require_relative 'handlers/music_genre'
-require_relative 'handlers/game_handler'
-# rubocop:disable Metrics
+require_relative 'glob_handler'
 
 class App
   include(BookLabelHandlers)
   include MusicGenreHandlers
   def initialize
-    @movie_handler = MovieHandler.new
-    @game_handler = GamesHandler.new
-    @books = []
-    @labels = []
-    @music_album = []
-    @genre = []
-    load_books_from_file
-    load_labels_from_file
+    class_init
+    arr_init
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -34,19 +24,11 @@ class App
   end
 
   def run
-    load_books_from_file
-    load_labels_from_file
-    load_musics_from_file
-    load_genres_from_file
-    @movie_handler.load_movies_from_files
-    @movie_handler.load_sources_from_files
-    @game_handler.load_games_from_files
-    @game_handler.load_authors_from_files
-    puts 'Welcome to the Catalog Of My Things! '
-    puts ''
-    puts 'Please choose an option by entering a number.'
-    print 'enter option: '
-    puts
+    book_load
+    music_load
+    movies_load
+    game_load
+    print_o
     loop do
       @options.each { |key, value| puts "\t #{key}) #{value}" }
 
@@ -59,6 +41,52 @@ class App
     save_labels
     save_music
     save_genre
+  end
+
+  def print_o
+    puts 'Welcome to the Catalog Of My Things! '
+    puts ''
+    puts 'Please choose an option by entering a number.'
+    print 'enter option: '
+    puts
+  end
+
+  def class_init
+    @movie_handler = MovieHandler.new
+    @game_handler = GamesHandler.new
+  end
+
+  def arr_init
+    @books = []
+    @labels = []
+    @music_album = []
+    @genre = []
+  end
+
+  def game_opts
+    @game_handler.add_game
+    @game_handler.save_author
+    @game_handler.save_games
+  end
+
+  def book_load
+    load_books_from_file
+    load_labels_from_file
+  end
+
+  def music_load
+    load_musics_from_file
+    load_genres_from_file
+  end
+
+  def movies_load
+    @movie_handler.load_movies_from_files
+    @movie_handler.load_sources_from_files
+  end
+
+  def game_load
+    @game_handler.load_games_from_files
+    @game_handler.load_authors_from_files
   end
 
   def handle_option(option)
@@ -86,9 +114,7 @@ class App
     when '11'
       @movie_handler.add_movie
     when '12'
-      @game_handler.add_game
-      @game_handler.save_author
-      @game_handler.save_games
+      game_opts
     else
       puts 'That is not a valid option'
     end
@@ -99,5 +125,4 @@ def main
   app = App.new
   app.run
 end
-# rubocop:enable Metrics
 main
