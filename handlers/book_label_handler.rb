@@ -23,13 +23,13 @@ module BookLabelHandlers
 
   def handle_label
     if @labels.any?
-      print "enter 'N' to create a new label or 'S' to select an existing one: "
+      print "enter 'N' to create a new label or 'S' to select an existing one"
       option = gets.chomp.upcase
       case option
       when 'N'
         create_label
       when 'S'
-        puts 'select a label from the list by index: '
+        puts 'select a label from the list by index'
         list_all_labels
         option = gets.chomp
         @labels[option.to_i]

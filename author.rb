@@ -2,7 +2,7 @@ class Author
   attr_accessor :first_name, :last_name, :id
   attr_reader :items
 
-  def initialize(first_name, last_name)
+  def initialize(first_name:, last_name:)
     @first_name = first_name
     @last_name = last_name
     @items = []
@@ -22,13 +22,8 @@ class Author
       JSON.create_id => self.class.name,
       'first_name' => @first_name,
       'last_name' => @last_name,
-      'id' => @id
+      'id' => @id,
+      'items' => @items
     }.to_json(*args)
-  end
-
-  def self.json_create(obj)
-    author = new(obj['first_name'], obj['last_name'])
-    author.id = obj['id']
-    author
   end
 end
