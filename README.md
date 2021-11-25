@@ -8,7 +8,7 @@
 
 ## Introduction Video
 
-- [Video](url)
+- [Video](https://drive.google.com/file/d/1YbJh0LW3gyzK83kGpmC9I0EcPWnlvxzt/view?usp=sharing)
 
 ## The learning objective of this project are
 
