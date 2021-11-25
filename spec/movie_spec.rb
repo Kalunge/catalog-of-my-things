@@ -2,7 +2,7 @@ require_relative '../movie'
 
 describe Movie do
   before(:each) do
-    @movie = Movie.new(publish_date: '2020-10-10', silet: false, archived: false, name: 'Test')
+    @movie = Movie.new(publish_date: '2020-10-10', silent: false, archived: false, name: 'Test')
   end
 
   it 'shows instance of Movie class' do
@@ -17,7 +17,7 @@ describe Movie do
     expect(@movie.archived).to be false
   end
 
-  it 'verifies silet return true' do
-    expect(@movie.silet).to be false
+  it 'verifies silent return true' do
+    expect(@movie.silent).to be false
   end
 end

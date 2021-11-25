@@ -10,7 +10,7 @@ class Author
 
   def add_item(item)
     item.add_author(self)
-    @items << item
+    @items << item unless @items.include?(item)
   end
 
   def to_s
