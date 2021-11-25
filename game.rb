@@ -35,3 +35,14 @@ class Game < Item
     game
   end
 end
+
+def to_json(*args)
+  {
+    JSON.create_id => self.class.name,
+    'name' => @name,
+    'id' => @id,
+    'multiplayer' => @multiplayer,
+    'publishe_date' => @publishe_date,
+    'last_played_at' => @last_played_at
+  }.to_json(*args)
+end
