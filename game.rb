@@ -42,7 +42,7 @@ def to_json(*args)
     'name' => @name,
     'id' => @id,
     'multiplayer' => @multiplayer,
-    'publishe_date' => @publishe_date,
+    'publish_date' => @publish_date,
     'last_played_at' => @last_played_at
   }.to_json(*args)
 end
