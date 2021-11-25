@@ -63,10 +63,9 @@ module BookLabelHandlers
       JSON.parse(File.read('books.json')).map do |book|
         name = book['name']
         publisher = book['publisher']
-        publish_date = book['published_date']
+        publish_date = book['publish_date']
         cover_state = book['cover_state']
-        new_book = Book.new(name: name, publisher: publisher, publish_date: publish_date, cover_state: cover_state)
-        @books << new_book
+        @books.push(Book.new(name: name, publisher: publisher, publish_date: publish_date, cover_state: cover_state))
       end
     else
       []
@@ -101,6 +100,7 @@ module BookLabelHandlers
         title = label['title']
         color = label['color']
         new_label = Label.new(title: title, color: color)
+        new_label.items = label['items']
         @labels << new_label
       end
     else
