@@ -68,16 +68,16 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 **Daniel M. Matongo**
-
-- GitHub: [@mmatongo](https://github.com/mmatongo)
-- LinkedIn: [Daniel M. Matongo](https://linkedin.com/in/mmatongo)
-
 👤 **Titus Muthomi**
 
 - GitHub: [@Kalunge](https://github.com/Kalunge)
 - Twitter: [@titus_muthomi](https://twitter.com/titus_muthomi)
 - LinkedIn: [Titus Muthomi](https://www.linkedin.com/in/muthomi-titus-295024181/)
+
+👤 **Daniel M. Matongo**
+
+- GitHub: [@mmatongo](https://github.com/mmatongo)
+- LinkedIn: [Daniel M. Matongo](https://linkedin.com/in/mmatongo)
 
 
 👤 **Rida Arif**
